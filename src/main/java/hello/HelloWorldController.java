@@ -22,14 +22,12 @@ public class HelloWorldController {
        @RequestMapping(value="/groupByOrderChannel",method=RequestMethod.POST)
         public @ResponseBody WebhookResponse groupByOrderChannel(@RequestBody String obj){
         System.out.println(obj);
+        
         RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<WebResponse>> rateResponse =
-		        restTemplate.exchange("https://cpm-json-data.herokuapp.com/api/groupByOrderChannel",
-		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<WebResponse>>() {
-		            });
-		List<WebResponse> rates = rateResponse.getBody();
-		
-		return new WebhookResponse("Group By Orders Channel and Its Count" +rates, "Group By Orders Channel and Its Count" +rates);
+    	ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("https://cpm-json-data.herokuapp.com/api/groupByOrderChannel", Object[].class);
+		Object[] objects = responseEntity.getBody();
+	
+		return new WebhookResponse("Group By Orders Channel and Its Count" +objects[0], "Group By Orders Channel and Its Count" +objects[0]);
     }
     
         @RequestMapping(value="/getTotalOrders",method=RequestMethod.POST)
@@ -37,13 +35,10 @@ public class HelloWorldController {
         System.out.println(obj);
       
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<WebResponse>> rateResponse =
-		        restTemplate.exchange("https://cpm-json-data.herokuapp.com/api/groupByOrderChannel",
-		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<WebResponse>>() {
-		            });
-		List<WebResponse> rates = rateResponse.getBody();
+        ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("https://cpm-json-data.herokuapp.com/api/getTotalOrders", Object[].class);
+		Object[] objects = responseEntity.getBody();
 		
-		return new WebhookResponse("Group By Orders and Its Count" +rates, "Group By Orders Channel and Its Count" +rates);
+		return new WebhookResponse("Group By Orders and Its Count" +objects[0], "Group By Orders Channel and Its Count" +objects[0]);
     }
 
 }
