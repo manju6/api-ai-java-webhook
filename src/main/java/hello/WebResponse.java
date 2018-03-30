@@ -1,5 +1,5 @@
-package hello;
 
+package com.tcs.coe.cpm.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,8 +13,8 @@ public class WebResponse {
 	@JsonProperty( "count" )
     private String count;
 	
-	
-    private final String source = "CPM";
+	@JsonProperty( "source" )
+    private String source ;
     
     
 	public String getGroupBy() {
@@ -32,11 +32,9 @@ public class WebResponse {
 	public void setCount(String count) {
 		this.count = count;
 	}
+	public void setSource(String source) {
+		this.source = source;
+	}
 
-	
-    
-	
-	
-    
 
 }
