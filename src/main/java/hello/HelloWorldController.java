@@ -23,11 +23,11 @@ public class HelloWorldController {
         public @ResponseBody WebhookResponse groupByOrderChannel(@RequestBody String obj){
         System.out.println(obj);
         RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<WebhookResponse>> rateResponse =
+		ResponseEntity<List<WebResponse>> rateResponse =
 		        restTemplate.exchange("https://cpm-json-data.herokuapp.com/api/groupByOrderChannel",
-		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<WebhookResponse>>() {
+		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<WebResponse>>() {
 		            });
-		List<WebhookResponse> rates = rateResponse.getBody();
+		List<WebResponse> rates = rateResponse.getBody();
 		
 		return new WebhookResponse("Group By Orders Channel and Its Count" +rates, "Group By Orders Channel and Its Count" +rates);
     }
@@ -37,11 +37,11 @@ public class HelloWorldController {
         System.out.println(obj);
       
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<WebhookResponse>> rateResponse =
+		ResponseEntity<List<WebResponse>> rateResponse =
 		        restTemplate.exchange("https://cpm-json-data.herokuapp.com/api/groupByOrderChannel",
-		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<WebhookResponse>>() {
+		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<WebResponse>>() {
 		            });
-		List<WebhookResponse> rates = rateResponse.getBody();
+		List<WebResponse> rates = rateResponse.getBody();
 		
 		return new WebhookResponse("Group By Orders and Its Count" +rates, "Group By Orders Channel and Its Count" +rates);
     }
