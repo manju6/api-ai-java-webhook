@@ -1,20 +1,37 @@
 package hello;
 
+import org.apache.tomcat.util.http.parser.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
+
+
 
 @Controller
 @RequestMapping("/webhook")
 public class HelloWorldController {
 
     
-        @RequestMapping(method = RequestMethod.POST)
-        public @ResponseBody WebhookResponse webhook(@RequestBody String obj){
+       @RequestMapping(value="/groupByOrderChannel",method=RequestMethod.POST)
+        public @ResponseBody WebhookResponse groupByOrderChannel(@RequestBody String obj){
         System.out.println(obj);
-        return new WebhookResponse("Total Orders in Past 24 Hours is 4500" , "Total Orders in Past 24 Hours is 4500");
+        RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("https://cpm-json-data.herokuapp.com/api/groupByOrderChannel", Object[].class);
+		Object[] objects = responseEntity.getBody();
+		return new WebhookResponse("Group By Orders Channel and Its Count" +objects, "Group By Orders Channel and Its Count" +objects);
+    }
+    
+        @RequestMapping(value="/getTotalOrders",method=RequestMethod.POST)
+        public @ResponseBody WebhookResponse getTotalOrders(@RequestBody String obj){
+        System.out.println(obj);
+        RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("https://cpm-json-data.herokuapp.com/api/getTotalOrders", Object[].class);
+		Object[] objects = responseEntity.getBody();
+		return new WebhookResponse("Group By Orders Channel and Its Count" +objects, "Group By Orders Channel and Its Count" +objects);
     }
 
 }
