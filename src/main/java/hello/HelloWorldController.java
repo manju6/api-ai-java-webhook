@@ -19,8 +19,8 @@ import org.springframework.web.client.RestTemplate;
 public class HelloWorldController {
 
     
-       @RequestMapping(value="/groupByOrderChannel",method=RequestMethod.POST)
-        public @ResponseBody WebhookResponse groupByOrderChannel(@RequestBody String obj){
+       @RequestMapping(method=RequestMethod.POST)
+        public @ResponseBody WebhookResponse webhook(@RequestBody String obj){
         System.out.println(obj);
         
         RestTemplate restTemplate = new RestTemplate();
