@@ -1,5 +1,4 @@
-
-package com.tcs.coe.cpm.model;
+package hello;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
